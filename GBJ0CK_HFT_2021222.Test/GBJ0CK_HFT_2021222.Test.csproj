@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DumpExtensions" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Logic\GBJ0CK_HFT_2021222.Logic.csproj" />
+    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Models\GBJ0CK_HFT_2021222.Models.csproj" />
+    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Repository\GBJ0CK_HFT_2021222.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
