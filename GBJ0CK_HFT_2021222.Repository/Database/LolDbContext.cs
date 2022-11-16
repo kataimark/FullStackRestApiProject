@@ -21,9 +21,9 @@ namespace GBJ0CK_HFT_2021222.Repository
         {
             if (!builder.IsConfigured)
             {
-                string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Lol.mdf;Integrated Security=True;MultipleActiveResultSets = true";
+                
                 builder.UseLazyLoadingProxies();
-                builder.UseSqlServer(conn);
+                builder.UseInMemoryDatabase("Lol");
             }
         }
 
