@@ -1,4 +1,6 @@
-﻿using GBJ0CK_HFT_2021222.Repository;
+﻿using GBJ0CK_HFT_2021222.Logic;
+using GBJ0CK_HFT_2021222.Models;
+using GBJ0CK_HFT_2021222.Repository;
 using System;
 using System.Linq;
 
@@ -18,6 +20,14 @@ namespace GBJ0CK_HFT_2021222.Client
             ctx.LolPlayers.ToList()
                 .ForEach(t => Console.WriteLine(t.Name + " " + t.Role));
 
+            var lolplayerrepo = new LolPlayerRepository(ctx);
+            var lolteamrepo = new LolTeamRepository(ctx);
+            var lolmanagerrepo = new LolManagerRepository(ctx);
+
+
+            var lolplayerlogic = new LolPlayerLogic(lolplayerrepo);
+            var lolteamlogic = new LolTeamLogic(lolteamrepo);
+            var lolmanagerlogic = new LolManagerLogic(lolmanagerrepo);
 
         }
     }

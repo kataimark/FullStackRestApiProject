@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Logic\GBJ0CK_HFT_2021222.Logic.csproj" />
     <ProjectReference Include="..\GBJ0CK_HFT_2021222.Models\GBJ0CK_HFT_2021222.Models.csproj" />
     <ProjectReference Include="..\GBJ0CK_HFT_2021222.Repository\GBJ0CK_HFT_2021222.Repository.csproj" />
   </ItemGroup>

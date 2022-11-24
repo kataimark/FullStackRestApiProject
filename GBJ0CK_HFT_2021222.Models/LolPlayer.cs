@@ -31,10 +31,9 @@ namespace GBJ0CK_HFT_2021222.Models
         {
             string[] split = line.Split('#');
             Id = int.Parse(split[0]);
-            LolTeam_id = int.Parse(split[1]);
-            Name = split[2];
-            Age = int.Parse(split[3]);
-            Role = split[4];
+            Name = split[1];
+            Age = int.Parse(split[2]);
+            Role = split[3];
             
         }
     }

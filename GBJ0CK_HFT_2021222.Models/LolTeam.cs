@@ -37,10 +37,9 @@ namespace GBJ0CK_HFT_2021222.Models
         {
             string[] split = line.Split('#');
             Id = int.Parse(split[0]);
-            LolManager_id = int.Parse(split[1]);
-            TeamName = split[2];
-            Wins = int.Parse(split[3]);
-            WasChampion = int.Parse(split[4]);
+            TeamName = split[1];
+            Wins = int.Parse(split[2]);
+            WasChampion = int.Parse(split[3]);
             
         }
 
