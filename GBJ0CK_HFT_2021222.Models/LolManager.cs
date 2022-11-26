@@ -12,7 +12,7 @@ namespace GBJ0CK_HFT_2021222.Models
     public class LolManager
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public int Id { get; set; }
 
         [StringLength(240)]
