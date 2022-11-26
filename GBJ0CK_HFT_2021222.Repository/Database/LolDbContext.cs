@@ -87,7 +87,7 @@ namespace GBJ0CK_HFT_2021222.Repository
             LolPlayer LolPlayer25 = new LolPlayer() { Id = 25, Name = "Meiko", Age = 24, Role = "Support", LolTeam_id = 5 };
             
 
-            modelBuilder.Entity<LolManager>().HasData(LolManager1, LolManager2, LolManager3, LolManager5);       
+            modelBuilder.Entity<LolManager>().HasData(LolManager1, LolManager2, LolManager3, LolManager4, LolManager5);       
             modelBuilder.Entity<LolTeam>().HasData(LolTeam1, LolTeam2, LolTeam3, LolTeam4, LolTeam5);
             modelBuilder.Entity<LolPlayer>().HasData(LolPlayer1, LolPlayer2, LolPlayer3, LolPlayer4, LolPlayer5, LolPlayer6, LolPlayer7, LolPlayer8, LolPlayer9, LolPlayer10, LolPlayer11, LolPlayer12, LolPlayer13, LolPlayer14, LolPlayer15, LolPlayer16, LolPlayer17, LolPlayer18, LolPlayer19, LolPlayer20, LolPlayer21, LolPlayer22, LolPlayer23, LolPlayer24, LolPlayer25);
 
