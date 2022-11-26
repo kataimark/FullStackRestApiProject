@@ -49,18 +49,7 @@ namespace GBJ0CK_HFT_2021222.Test
         [TestCase("TestName", "TestRole", true)]
         [TestCase("TestName123", "TestRole123", false)]
         [TestCase("", "", false)]
-        public void CreateLolPlayerTest(string name, string role, bool result)
-        {
-            if (result)
-            {
-                Assert.That(() => { playerlogic.Create(new LolPlayer() { Name = name, Role = role }); }, Throws.Nothing);
-            }
-            else
-            {
-                Assert.That(() => { playerlogic.Create(new LolPlayer() { Name = name, Role = role }); }, Throws.Exception);
-
-            }
-        }
+        
 
         [TestCase("TestTeamName", 0, true)]
         [TestCase("TestTeamName", -10, false)]
