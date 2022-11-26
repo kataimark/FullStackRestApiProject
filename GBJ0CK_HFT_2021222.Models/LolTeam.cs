@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GBJ0CK_HFT_2021222.Models
 {
-    
+    [Table("LolTeam")]
     public class LolTeam
     {
         [Key]
