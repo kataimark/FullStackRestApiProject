@@ -145,9 +145,7 @@ namespace GBJ0CK_HFT_2021222.Test
 
         private IQueryable<LolPlayer> FakeLolPlayerObject()
         {
-            LolManager LolManager1 = new LolManager() { Id = 1, ManagerName = "Freid", Age = 22 };
-            LolManager LolManager2 = new LolManager() { Id = 2, ManagerName = "Norme", Age = 30 };
-            LolManager LolManager3 = new LolManager() { Id = 3, ManagerName = "Drake", Age = 40 };
+           
 
             LolManager1.LolTeams = new List<LolTeam>();
             LolManager2.LolTeams = new List<LolTeam>();
