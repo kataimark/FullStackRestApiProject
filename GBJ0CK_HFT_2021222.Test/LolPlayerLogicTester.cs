@@ -145,7 +145,9 @@ namespace GBJ0CK_HFT_2021222.Test
 
         private IQueryable<LolPlayer> FakeLolPlayerObject()
         {
-           
+            LolManager LolManager1 = new LolManager() { Id = 1, ManagerName = "Freid", Age = 22 };
+            LolManager LolManager2 = new LolManager() { Id = 2, ManagerName = "Norme", Age = 30 };
+            LolManager LolManager3 = new LolManager() { Id = 3, ManagerName = "Drake", Age = 40 };
 
             LolManager1.LolTeams = new List<LolTeam>();
             LolManager2.LolTeams = new List<LolTeam>();
@@ -153,12 +155,7 @@ namespace GBJ0CK_HFT_2021222.Test
 
             // -------------------------------------------------------------------------------------------------------
 
-            LolTeam LolTeam1 = new LolTeam() { Id = 1, TeamName = "JMOP", Wins = 40, WasChampion=2,LolManager_id = 1 };
-            LolTeam LolTeam2 = new LolTeam() { Id = 2, TeamName = "KNFA", Wins = 60, WasChampion = 5 ,LolManager_id = 1 };
-            LolTeam LolTeam3 = new LolTeam() { Id = 3, TeamName = "WITH", Wins = 20, WasChampion = 1, LolManager_id = 2 };
-            LolTeam LolTeam4 = new LolTeam() { Id = 4, TeamName = "SATA", Wins = 30, WasChampion = 3, LolManager_id = 2 };
-            LolTeam LolTeam5 = new LolTeam() { Id = 5, TeamName = "DENT", Wins = 65, WasChampion = 4, LolManager_id = 3 };
-            LolTeam LolTeam6 = new LolTeam() { Id = 6, TeamName = "ROLL", Wins = 21, WasChampion = 0, LolManager_id = 3 };
+            
 
             LolTeam1.LolManager = LolManager1;
             LolTeam2.LolManager = LolManager1;
