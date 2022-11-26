@@ -118,30 +118,7 @@ namespace GBJ0CK_HFT_2021222.Test
 
 
         //non-CRUD------------------------------------------------------------------------------------------------------------
-        [Test]
-        public void GetPassAtTokyo_ReturnsCorrectInstance()
-        {
-            Assert.That(playerlogic.GetLolplayersAtAgeFourty().Count, Is.EqualTo(40));
-        }
-
-        [Test]
-        public void GetPassLolTeamPrice_RetursCorrectInstance()
-        {
-            Assert.That(playerlogic.GetLolPlayerWhereWinIsOverTen().First().LolTeam.Wins, Is.GreaterThanOrEqualTo(10));
-        }
-
-
-        [Test]
-        public void GetPassWhereModelName_ReturnsCorrectInstance()
-        {
-            Assert.That(playerlogic.GetLolplayersWhereTeamNameIsRoll().First().LolTeam.TeamName, Is.EqualTo("ROLL"));
-        }
-
-        [Test]
-        public void GetLolManagerName()
-        {
-            Assert.That(managerlogic.GetLolManagertName().Count(), Is.EqualTo(1));
-        }
+        
 
         private IQueryable<LolPlayer> FakeLolPlayerObject()
         {
