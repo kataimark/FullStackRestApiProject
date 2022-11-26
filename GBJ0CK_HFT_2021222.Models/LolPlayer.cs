@@ -23,7 +23,7 @@ namespace GBJ0CK_HFT_2021222.Models
         [ForeignKey(nameof(LolTeam))]
         public int LolTeam_id { get; set; }
         [NotMapped]
-        
+        [JsonIgnore]
         public virtual LolTeam LolTeam { get; set; }
 
     }
