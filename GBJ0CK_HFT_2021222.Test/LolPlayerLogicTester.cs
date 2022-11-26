@@ -419,7 +419,9 @@ namespace GBJ0CK_HFT_2021222.Test
             
 
             List<LolManager> LolManagers = new List<LolManager>();
-            
+            LolManagers.Add(LolManager1);
+            LolManagers.Add(LolManager2);
+            LolManagers.Add(LolManager3);
             return LolManagers.AsQueryable();
 
         }
