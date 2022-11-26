@@ -20,7 +20,7 @@ namespace GBJ0CK_HFT_2021222.Models
         public string Role { get; set; }
 
 
-        [ForeignKey(nameof(LolTeam))]
+        
         public int LolTeam_id { get; set; }
         [NotMapped]
         [JsonIgnore]
