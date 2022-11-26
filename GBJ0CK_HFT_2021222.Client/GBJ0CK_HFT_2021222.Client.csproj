@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="DumpExtensions" Version="2.0.0" />
+	  <PackageReference Include="ConsoleMenu-simple" Version="2.4.1" />
+	  <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.14" />
@@ -14,12 +16,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Refit" Version="6.3.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Logic\GBJ0CK_HFT_2021222.Logic.csproj" />
-    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Models\GBJ0CK_HFT_2021222.Models.csproj" />
-    <ProjectReference Include="..\GBJ0CK_HFT_2021222.Repository\GBJ0CK_HFT_2021222.Repository.csproj" />
+    <ProjectReference Include="..\GBJ0CK_HFT_2021222.EndPoint\GBJ0CK_HFT_2021222.EndPoint.csproj" />
   </ItemGroup>
 
 </Project>

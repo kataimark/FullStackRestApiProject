@@ -8,11 +8,15 @@ namespace GBJ0CK_HFT_2021222.Logic
 {
     public class LolPlayerLogic : ILolPlayerLogic
     {
-        IRepository<LolPlayer> repo;
+        IRepository<LolPlayer> playerRepo;
+        IRepository<LolTeam> teamRepo;
+        IRepository<LolManager> managerRepo;
 
-        public LolPlayerLogic(IRepository<LolPlayer> repo)
+        public LolPlayerLogic(IRepository<LolPlayer> playerRepo, IRepository<LolTeam> teamRepo, IRepository<LolManager> managerRepo)
         {
-            this.repo = repo;
+            this.playerRepo = playerRepo;
+            this.teamRepo = teamRepo;
+            this.managerRepo = managerRepo;
         }
 
         public void Create(LolPlayer item)
@@ -21,17 +25,17 @@ namespace GBJ0CK_HFT_2021222.Logic
             {
                 throw new ArgumentException("PlayerName too short...");
             }
-            this.repo.Create(item);
+            this.playerRepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            this.playerRepo.Delete(id);
         }
 
         public LolPlayer Read(int id)
         {
-            var player = this.repo.Read(id);
+            var player = this.playerRepo.Read(id);
             if (player == null)
             {
 
@@ -43,28 +47,44 @@ namespace GBJ0CK_HFT_2021222.Logic
 
         public IQueryable<LolPlayer> ReadAll()
         {
-            return this.repo.ReadAll();
+            return this.playerRepo.ReadAll();
         }
 
         public void Update(LolPlayer item)
         {
-            this.repo.Update(item);
+            this.playerRepo.Update(item);
         }
 
-        public double? GetAverageAge(string role)
+        public IEnumerable<LolPlayer> GetLolplayersAtAgeFourty()
         {
-            return this.repo
-            .ReadAll()
-            .Where(t => t.Role == role)
-            .Average(t => t.Age);
+            var q = from lolplayers in playerRepo.ReadAll()
+                    join lolteams in teamRepo.ReadAll()
+                    on lolplayers.LolTeam_id equals lolteams.Id
+                    join lolmanagers in managerRepo.ReadAll()
+                    on lolteams.LolManager_id equals lolmanagers.Id
+                    where lolmanagers.Age == 40
+                    select lolplayers;
+
+            return q;
+        }
+        public IEnumerable<LolPlayer> GetLolPlayerWhereWinIsOverTen()
+        {
+            var q = from lolplayers in playerRepo.ReadAll()
+                    join lolteams in teamRepo.ReadAll()
+                    on lolplayers.LolTeam_id equals lolteams.Id
+                    where lolteams.Wins > 10
+                    select lolplayers;
+            return q;
         }
 
-        public double? GetWinsByChampion(string role)
+        public IEnumerable<LolPlayer> GetLolplayersWhereTeamNameIsRoll()
         {
-            return this.repo
-            .ReadAll()
-            .Where(t => t.Role == role)
-            .Average(t => t.Name.Length);
+            var q = from lolplayers in playerRepo.ReadAll()
+                    join lolteams in teamRepo.ReadAll()
+                    on lolplayers.LolTeam_id equals lolteams.Id
+                    where lolteams.TeamName == "ROLL"
+                    select lolplayers;
+            return q;
         }
 
     }

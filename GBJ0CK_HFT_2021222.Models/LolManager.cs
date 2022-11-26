@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GBJ0CK_HFT_2021222.Models
 {
+    [Table("LolManager")]
     public class LolManager
     {
         [Key]
@@ -18,20 +19,12 @@ namespace GBJ0CK_HFT_2021222.Models
         public string ManagerName { get; set; }
         [Range(0, 100)]
         public int Age { get; set; }
-
+        [NotMapped]
         public virtual ICollection<LolTeam> LolTeams { get; set; }
 
         public LolManager()
         {
             LolTeams = new HashSet<LolTeam>();
-        }
-        public LolManager(string line)
-        {
-            string[] split = line.Split('#');
-            Id = int.Parse(split[0]);
-            ManagerName = split[1];
-            Age = int.Parse(split[2]);
-
         }
         
     }

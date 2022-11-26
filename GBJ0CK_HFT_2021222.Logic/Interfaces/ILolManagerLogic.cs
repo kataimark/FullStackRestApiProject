@@ -1,4 +1,5 @@
 ﻿using GBJ0CK_HFT_2021222.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GBJ0CK_HFT_2021222.Logic
@@ -10,5 +11,10 @@ namespace GBJ0CK_HFT_2021222.Logic
         LolManager Read(int id);
         IQueryable<LolManager> ReadAll();
         void Update(LolManager item);
+
+
+        IEnumerable<LolManager> GetLolManagertName();
+
+        IEnumerable<LolManager> GetLolManagertAtTwenty();
     }
 }

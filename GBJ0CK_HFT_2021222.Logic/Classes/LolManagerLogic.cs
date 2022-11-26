@@ -10,36 +10,64 @@ namespace GBJ0CK_HFT_2021222.Logic
 {
     public class LolManagerLogic : ILolManagerLogic
     {
-        IRepository<LolManager> repo;
+        IRepository<LolPlayer> playerRepo;
+        IRepository<LolTeam> teamRepo;
+        IRepository<LolManager> managerRepo;
 
-        public LolManagerLogic(IRepository<LolManager> repo)
+        public LolManagerLogic(IRepository<LolPlayer> playerRepo, IRepository<LolTeam> teamRepo, IRepository<LolManager> managerRepo)
         {
-            this.repo = repo;
+            this.playerRepo = playerRepo;
+            this.teamRepo = teamRepo;
+            this.managerRepo = managerRepo;
         }
 
         public void Create(LolManager item)
         {
-            this.repo.Create(item);
+            this.managerRepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            this.managerRepo.Delete(id);
         }
 
         public LolManager Read(int id)
         {
-            return this.repo.Read(id);
+            return this.managerRepo.Read(id);
         }
 
         public IQueryable<LolManager> ReadAll()
         {
-            return this.repo.ReadAll();
+            return this.managerRepo.ReadAll();
         }
 
         public void Update(LolManager item)
         {
-            this.repo.Update(item);
+            this.managerRepo.Update(item);
+        }
+
+        public IEnumerable<LolManager> GetLolManagertName()
+        {
+            var q = from lolplayers in playerRepo.ReadAll()
+                    join lolteams in teamRepo.ReadAll()
+                    on lolplayers.LolTeam_id equals lolteams.Id
+                    join lolmanagers in managerRepo.ReadAll()
+                    on lolteams.LolManager_id equals lolmanagers.Id
+                    where lolplayers.Name == "Freid"
+                    select lolmanagers;
+            return q;
+        }
+
+        public IEnumerable<LolManager> GetLolManagertAtTwenty()
+        {
+            var q = from lolplayers in playerRepo.ReadAll()
+                    join lolteams in teamRepo.ReadAll()
+                    on lolplayers.LolTeam_id equals lolteams.Id
+                    join lolmanagers in managerRepo.ReadAll()
+                    on lolteams.LolManager_id equals lolmanagers.Id
+                    where lolplayers.Age == 20
+                    select lolmanagers;
+            return q;
         }
     }
 }

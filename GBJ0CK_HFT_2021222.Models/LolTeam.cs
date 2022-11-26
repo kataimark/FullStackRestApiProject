@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GBJ0CK_HFT_2021222.Models
 {
+    [Table("LolTeam")]
     public class LolTeam
     {
         [Key]
@@ -25,6 +27,8 @@ namespace GBJ0CK_HFT_2021222.Models
         [ForeignKey(nameof(LolManager))]
         public int LolManager_id { get; set; }
 
+        [NotMapped]
+        [JsonIgnore]
         public virtual LolManager LolManager { get; set; }
 
         public virtual ICollection<LolPlayer> LolPlayers { get; set; }
@@ -32,15 +36,6 @@ namespace GBJ0CK_HFT_2021222.Models
         public LolTeam()
         {
             LolPlayers = new HashSet<LolPlayer>();
-        }
-        public LolTeam(string line)
-        {
-            string[] split = line.Split('#');
-            Id = int.Parse(split[0]);
-            TeamName = split[1];
-            Wins = int.Parse(split[2]);
-            WasChampion = int.Parse(split[3]);
-            
         }
 
     }

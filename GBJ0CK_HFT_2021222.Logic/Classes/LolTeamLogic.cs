@@ -10,36 +10,36 @@ namespace GBJ0CK_HFT_2021222.Logic
 {
     public class LolTeamLogic : ILolTeamLogic
     {
-        IRepository<LolTeam> repo;
+        IRepository<LolTeam> Teamrepo;
 
         public LolTeamLogic(IRepository<LolTeam> repo)
         {
-            this.repo = repo;
+            this.Teamrepo = repo;
         }
 
         public void Create(LolTeam item)
         {
-            this.repo.Create(item);
+            this.Teamrepo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            this.Teamrepo.Delete(id);
         }
 
         public LolTeam Read(int id)
         {
-            return this.repo.Read(id);
+            return this.Teamrepo.Read(id);
         }
 
         public IQueryable<LolTeam> ReadAll()
         {
-            return this.repo.ReadAll();
+            return this.Teamrepo.ReadAll();
         }
 
         public void Update(LolTeam item)
         {
-            this.repo.Update(item);
+            this.Teamrepo.Update(item);
         }
     }
 }
