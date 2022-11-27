@@ -120,8 +120,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolTeam LolTeam4 = new LolTeam() { Id = 4, TeamName = "SATA", Wins = 30, WasChampion = 3, LolManager_id = 2 };
             LolTeam LolTeam5 = new LolTeam() { Id = 5, TeamName = "DENT", Wins = 65, WasChampion = 4, LolManager_id = 3 };
             LolTeam LolTeam6 = new LolTeam() { Id = 6, TeamName = "ROLL", Wins = 21, WasChampion = 0, LolManager_id = 3 };
-            LolTeam LolTeam7 = new LolTeam() { Id = 5, TeamName = "DENT", Wins = 65, WasChampion = 4, LolManager_id = 3 };
-            LolTeam LolTeam8 = new LolTeam() { Id = 6, TeamName = "ROLL", Wins = 21, WasChampion = 0, LolManager_id = 3 };
 
             LolTeam1.LolManager = LolManager1;
             LolTeam2.LolManager = LolManager1;
