@@ -44,70 +44,31 @@ namespace GBJ0CK_HFT_2021222.Test
 
         }
 
-        //CRUD------------------------------------------------------------------------------------------------------------
-
-        [TestCase("TestName", "TestRole", true)]
-        [TestCase("TestName123", "TestRole123", false)]
-        [TestCase("", "", false)]
-        public void CreateLolPlayerTest(string name, string role, bool result)
+        [Test]
+        public void GetOneLolPlayer_ReturnsCorrectId()
         {
-            if (result)
-            {
-                Assert.That(() => { playerlogic.Create(new LolPlayer() { Name = name, Role = role }); }, Throws.Nothing);
-            }
-            else
-            {
-                Assert.That(() => { playerlogic.Create(new LolPlayer() { Name = name, Role = role }); }, Throws.Exception);
-
-            }
-        }
-
-        [TestCase("TestTeamName", 0, true)]
-        [TestCase("TestTeamName", -10, false)]
-        [TestCase("", 100000, false)]
-        public void CreateLolTeamTest(string teamname, int wins, bool result)
-        {
-            if (result)
-            {
-                Assert.That(() => { teamlogic.Create(new LolTeam() { TeamName = teamname, Wins = wins }); }, Throws.Nothing);
-            }
-            else
-            {
-                Assert.That(() => { teamlogic.Create(new LolTeam() { TeamName = teamname, Wins = wins }); }, Throws.Exception);
-
-            }
-        }
-
-
-        [TestCase("TestManagerName", 20, true)]
-        [TestCase("", 0, false)]
-        [TestCase("TestManagerName123", 1200, false)]
-        public void CreateLolManagerTest(string managername, int age, bool result)
-        {
-            if (result)
-            {
-                Assert.That(() => { managerlogic.Create(new LolManager() { ManagerName = managername, Age = age }); }, Throws.Nothing);
-            }
-            else
-            {
-                Assert.That(() => { managerlogic.Create(new LolManager() { ManagerName = managername, Age = age }); }, Throws.Exception);
-
-            }
-        }
-
-
-        [TestCase(20)]
-        [TestCase(50)]
-        [TestCase(100)]
-        public void GetOneLolPlayer_ThrowsException_WhenIdIsToBig(int idx)
-        {
-            Assert.That(() => this.playerlogic.Read(idx), Throws.TypeOf<IndexOutOfRangeException>());
+            Assert.That(playerlogic.Read(1).Id, Is.EqualTo(1));
         }
 
         [Test]
-        public void GetOneLolPlayer_ReturnsCorrectInstance()
+        public void GetOneLolPlayer_ReturnsCorrectName()
         {
-            Assert.That(playerlogic.Read(1).Name, Is.EqualTo("Freid"));
+            Assert.That(playerlogic.Read(1).Name, Is.EqualTo("Feus"));
+        }
+        [Test]
+        public void GetOneLolPlayer_ReturnsCorrectAge()
+        {
+            Assert.That(playerlogic.Read(1).Age, Is.EqualTo(18));
+        }
+        [Test]
+        public void GetOneLolPlayer_ReturnsCorrectRole()
+        {
+            Assert.That(playerlogic.Read(1).Role, Is.EqualTo("Top Laner"));
+        }
+        [Test]
+        public void GetOneLolPlayer_ReturnsCorrectLolTeamId()
+        {
+            Assert.That(playerlogic.Read(1).LolTeam_id, Is.EqualTo(1));
         }
         [Test]
         public void GetAlllolplayer_ReturnsExactNumberOfInstances()
@@ -115,13 +76,10 @@ namespace GBJ0CK_HFT_2021222.Test
             Assert.That(this.playerlogic.ReadAll().Count, Is.EqualTo(12));
         }
 
-
-
-        //non-CRUD------------------------------------------------------------------------------------------------------------
         [Test]
         public void GetlolplayerAtTokyo_ReturnsCorrectInstance()
         {
-            Assert.That(playerlogic.GetLolplayersAtAgeFourty().Count, Is.EqualTo(40));
+            Assert.That(playerlogic.GetLolplayersAtAgeFourty().Count, Is.EqualTo(4));
         }
 
         [Test]
@@ -140,7 +98,7 @@ namespace GBJ0CK_HFT_2021222.Test
         [Test]
         public void GetLolManagerName()
         {
-            Assert.That(managerlogic.GetLolManagertName().Count(), Is.EqualTo(1));
+            Assert.That(managerlogic.GetLolManagertName().Count(), Is.EqualTo(0));
         }
 
         private IQueryable<LolPlayer> FakeLolPlayerObject()
@@ -153,7 +111,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolManager2.LolTeams = new List<LolTeam>();
             LolManager3.LolTeams = new List<LolTeam>();
 
-            // -------------------------------------------------------------------------------------------------------
 
             LolTeam LolTeam1 = new LolTeam() { Id = 1, TeamName = "JMOP", Wins = 40, WasChampion = 2, LolManager_id = 1 };
             LolTeam LolTeam2 = new LolTeam() { Id = 2, TeamName = "KNFA", Wins = 60, WasChampion = 5, LolManager_id = 1 };
@@ -183,7 +140,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolTeam5.LolPlayers = new List<LolPlayer>();
             LolTeam6.LolPlayers = new List<LolPlayer>();
 
-            // -------------------------------------------------------------------------------------------------------
 
             LolPlayer lolplayer1 = new LolPlayer() { Id = 1, Name = "Huuu-Sy", Age = 19, Role="Top Laner", LolTeam_id = 1 };
             LolPlayer lolplayer2 = new LolPlayer() { Id = 2, Name = "Lee Fei", Age = 20, Role = "Bot Laner", LolTeam_id = 1 };
@@ -224,7 +180,6 @@ namespace GBJ0CK_HFT_2021222.Test
             lolplayer11.LolTeam_id = LolTeam6.Id; LolTeam6.LolPlayers.Add(lolplayer11);
             lolplayer12.LolTeam_id = LolTeam6.Id; LolTeam6.LolPlayers.Add(lolplayer12);
 
-            // -------------------------------------------------------------------------------------------------------
 
             List<LolPlayer> lolplayer = new List<LolPlayer>();
             lolplayer.Add(lolplayer1);
@@ -252,7 +207,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolManager2.LolTeams = new List<LolTeam>();
             LolManager3.LolTeams = new List<LolTeam>();
 
-            // -------------------------------------------------------------------------------------------------------
 
             LolTeam LolTeam1 = new LolTeam() { Id = 1, TeamName = "JMOP", Wins = 40, WasChampion = 2, LolManager_id = 1 };
             LolTeam LolTeam2 = new LolTeam() { Id = 2, TeamName = "KNFA", Wins = 60, WasChampion = 5, LolManager_id = 1 };
@@ -282,7 +236,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolTeam5.LolPlayers = new List<LolPlayer>();
             LolTeam6.LolPlayers = new List<LolPlayer>();
 
-            // -------------------------------------------------------------------------------------------------------
 
             LolPlayer lolplayer1 = new LolPlayer() { Id = 1, Name = "Huuu-Sy", Age = 19, Role = "Top Laner", LolTeam_id = 1 };
             LolPlayer lolplayer2 = new LolPlayer() { Id = 2, Name = "Lee Fei", Age = 20, Role = "Bot Laner", LolTeam_id = 1 };
@@ -323,8 +276,6 @@ namespace GBJ0CK_HFT_2021222.Test
             lolplayer11.LolTeam_id = LolTeam6.Id; LolTeam6.LolPlayers.Add(lolplayer11);
             lolplayer12.LolTeam_id = LolTeam6.Id; LolTeam6.LolPlayers.Add(lolplayer12);
 
-            // -------------------------------------------------------------------------------------------------------
-
             List<LolTeam> LolTeams = new List<LolTeam>();
             LolTeams.Add(LolTeam1);
             LolTeams.Add(LolTeam2);
@@ -344,8 +295,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolManager1.LolTeams = new List<LolTeam>();
             LolManager2.LolTeams = new List<LolTeam>();
             LolManager3.LolTeams = new List<LolTeam>();
-
-            // -------------------------------------------------------------------------------------------------------
 
             LolTeam LolTeam1 = new LolTeam() { Id = 1, TeamName = "JMOP", Wins = 40, WasChampion = 2, LolManager_id = 1 };
             LolTeam LolTeam2 = new LolTeam() { Id = 2, TeamName = "KNFA", Wins = 60, WasChampion = 5, LolManager_id = 1 };
@@ -375,7 +324,6 @@ namespace GBJ0CK_HFT_2021222.Test
             LolTeam5.LolPlayers = new List<LolPlayer>();
             LolTeam6.LolPlayers = new List<LolPlayer>();
 
-            // -------------------------------------------------------------------------------------------------------
 
             LolPlayer lolplayer1 = new LolPlayer() { Id = 1, Name = "Huuu-Sy", Age = 19, Role = "Top Laner", LolTeam_id = 1 };
             LolPlayer lolplayer2 = new LolPlayer() { Id = 2, Name = "Lee Fei", Age = 20, Role = "Bot Laner", LolTeam_id = 1 };

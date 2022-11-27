@@ -10,13 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ADMJPZ_HFT_2021221.WPFClient
+namespace GBJ0CK_HFT_2021222.WPFClient
 {
     public class RestService
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "/plane")
+        public RestService(string baseurl, string pingableEndpoint = "/lolteam")
         {
             bool isOk = false;
             do

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ADMJPZ_HFT_2021221.WPFClient
+namespace GBJ0CK_HFT_2021222.WPFClient
 {
     public class MainWindowViewModel : ObservableRecipient
     {

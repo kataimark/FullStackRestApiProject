@@ -1,6 +1,8 @@
-﻿using GBJ0CK_HFT_2021222.Logic;
+﻿using GBJ0CK_HFT_2021222.EndPoint.Services;
+using GBJ0CK_HFT_2021222.Logic;
 using GBJ0CK_HFT_2021222.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,46 +15,52 @@ namespace GBJ0CK_HFT_2021222.EndPoint.Controllers
     public class LolPlayerController : ControllerBase
     {
         ILolPlayerLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public LolPlayerController(ILolPlayerLogic logic)
+        public LolPlayerController(ILolPlayerLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
 
-        // GET: api/<LolPlayerController>
+        // GET: LolPlayer
         [HttpGet]
-        public IEnumerable<LolPlayer> ReadAll()
+        public IEnumerable<LolPlayer> Get()
         {
-            return this.logic.ReadAll();
+            return logic.ReadAll();
         }
 
-        // GET api/<LolPlayerController>/5
+        // GET LolPlayer/5
         [HttpGet("{id}")]
-        public LolPlayer Read(int id)
+        public LolPlayer Get(int id)
         {
-            return this.logic.Read(id);
+            return logic.Read(id);
         }
 
-        // POST api/<LolPlayerController>
+        // POST LolPlayer
         [HttpPost]
-        public void Create([FromBody] LolPlayer value)
+        public void Post([FromBody] LolPlayer value)
         {
-            this.logic.Create(value);
+            logic.Create(value);
+            this.hub.Clients.All.SendAsync("LolPlayerCreated", value);
         }
 
-        // PUT api/<LolPlayerController>/5
-        [HttpPut("{id}")]
-        public void Update([FromBody] LolPlayer value)
+        // PUT LolPlayer/5
+        [HttpPut]
+        public void Put([FromBody] LolPlayer value)
         {
-            this.logic.Update(value);
+            logic.Update(value);
+            this.hub.Clients.All.SendAsync("LolPlayerUpdated", value);
         }
 
-        // DELETE api/<LolPlayerController>/5
+        // DELETE LolPlayer/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            this.logic.Delete(id);
+            var LolPlayerToDelete = this.logic.Read(id);
+            logic.Delete(id);
+            this.hub.Clients.All.SendAsync("LolPlayerDeleted", LolPlayerToDelete);
         }
 
     }

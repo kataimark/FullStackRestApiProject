@@ -39,11 +39,11 @@ namespace GBJ0CK_HFT_2021222.Client
         private static void NonCrudMenu()
         {
             var menu = new ConsoleMenu()
-               .Add("Get LolPlayers at the Tokyo LolManager", GetLolplayersAtAgeFourty)
-               .Add("Get LolPlayers where their's LolTeam price is over 200.000.000$", GetLolPlayerWhereWinIsOverTen)
-               .Add("Get LolPlayers where their's LolTeam model name is Boeing 787-8", GetLolplayersWhereTeamNameIsRoll)
-               .Add("Get LolManagers where is a LolPlayer with Canadian nationality", GetLolManagertName)
-               .Add("Get LolManagers where is a LolPlayer with the last name Cohen", GetLolManagertAtTwenty)
+               .Add("Get LolPlayers at the LolManager", GetLolplayersAtAgeFourty)
+               .Add("Get LolPlayers where their's LolTeam price is over 10", GetLolPlayerWhereWinIsOverTen)
+               .Add("Get LolPlayers where their's LolTeam name is ROLL", GetLolplayersWhereTeamNameIsRoll)
+               .Add("Get LolManagers where is a LolPlayer with Manager", GetLolManagertName)
+               .Add("Get LolManagers where is a LolPlayer is twenty", GetLolManagertAtTwenty)
                .Add("Exit", ConsoleMenu.Close);
             menu.Show();
         }
