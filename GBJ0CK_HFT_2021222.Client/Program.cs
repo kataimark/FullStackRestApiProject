@@ -23,7 +23,6 @@ namespace GBJ0CK_HFT_2021222.Client
                .Add("Exit", ConsoleMenu.Close);
             menu.Show();
         }
-
         private static void CrudMenu()
         {
 
@@ -47,7 +46,6 @@ namespace GBJ0CK_HFT_2021222.Client
                .Add("Exit", ConsoleMenu.Close);
             menu.Show();
         }
-
         private static void PreMenu(Action lolplayer, Action lolTeam, Action lolmanager)
         {
             var menu = new ConsoleMenu()
@@ -58,13 +56,11 @@ namespace GBJ0CK_HFT_2021222.Client
             menu.Show();
         }
         //-------------------------------------------------------------------------------------------------------------CRUD------------------------------------------------
-
         //---------------------Create-------------------------
         private static void CreatePreMenu()
         {
             PreMenu(CreateLolplayer, CreateLolTeam, CreateLolManager);
         }
-
         private static void CreateLolManager()
         {
             Console.WriteLine("ManagerName: ");
@@ -73,7 +69,6 @@ namespace GBJ0CK_HFT_2021222.Client
             int age = int.Parse(Console.ReadLine());
             rserv.Post<LolManager>(new LolManager() { ManagerName = managername, Age = age }, "LolManager");
         }
-
         private static void CreateLolTeam()
         {
             Console.WriteLine("TeamName: ");
@@ -84,7 +79,6 @@ namespace GBJ0CK_HFT_2021222.Client
             int lolmanid = int.Parse(Console.ReadLine());
             rserv.Post<LolTeam>(new LolTeam() { TeamName = teamname, Wins = win, LolManager_id = lolmanid }, "LolTeam");
         }
-
         private static void CreateLolplayer()
         {
             Console.WriteLine("Name: ");
@@ -95,15 +89,12 @@ namespace GBJ0CK_HFT_2021222.Client
             int LolTeamid = int.Parse(Console.ReadLine());
             rserv.Post<LolPlayer>(new LolPlayer() { Name = name, Role = rolen, LolTeam_id = LolTeamid }, "LolPlayer");
         }
-
         //---------------------END-Create-------------------
-
         //---------------------Read------------------------
         private static void ReadPreMenu()
         {
             PreMenu(ReadLolplayer, ReadLolTeam, ReadLolManager);
         }
-
         private static void ReadLolManager()
         {
             Console.WriteLine("Search for desired with an Id of: ");
@@ -113,7 +104,6 @@ namespace GBJ0CK_HFT_2021222.Client
             Console.ReadLine();
 
         }
-
         private static void ReadLolTeam()
         {
             Console.WriteLine("Search for desired with an Id of: ");
@@ -122,7 +112,6 @@ namespace GBJ0CK_HFT_2021222.Client
             Console.WriteLine($"Id: {getLolTeam.Id}, TeamName: {getLolTeam.TeamName}, Wins: {getLolTeam.Wins}, LolManagerId: {getLolTeam.LolManager_id}");
             Console.ReadLine();
         }
-
         private static void ReadLolplayer()
         {
             Console.WriteLine("Search for desired with an Id of: ");
@@ -131,15 +120,12 @@ namespace GBJ0CK_HFT_2021222.Client
             Console.WriteLine($"Id: {getLolPlayer.Id}, Name: {getLolPlayer.Name}, Role: {getLolPlayer.Role}, LolTeamId: {getLolPlayer.LolTeam_id}");
             Console.ReadLine();
         }
-
         //---------------------END-Read-------------------
-
         //----------------------ReadAll----------------------
         private static void ReadAllPreMenu()
         {
             PreMenu(PrintAllLolPlayers, PrintAllLolTeams, PrintAllLolManagers);
         }
-
         private static void PrintAllLolPlayers()
         {
             var LolPlayers = rserv.Get<LolPlayer>("LolPlayer");
@@ -162,13 +148,11 @@ namespace GBJ0CK_HFT_2021222.Client
             Console.ReadLine();
         }
         //---------------END-ReadAll-------------------
-
         //-----------------Update-------------------
         private static void UpdatePreMenu()
         {
             PreMenu(UpdateLolPlayer, UpdateLolTeam, UpdateLolManager);
         }
-
         private static void UpdateLolManager()
         {
             Console.WriteLine("Id: ");
@@ -180,7 +164,6 @@ namespace GBJ0CK_HFT_2021222.Client
             LolManager input = new LolManager() { Id = id, ManagerName = Managername, Age = age };
             rserv.Put(input, "LolManager");
         }
-
         private static void UpdateLolTeam()
         {
             Console.WriteLine("Id: ");
@@ -194,7 +177,6 @@ namespace GBJ0CK_HFT_2021222.Client
             LolTeam input = new LolTeam() { Id = id, TeamName = teamname, Wins = win, LolManager_id = airpid };
             rserv.Put(input, "LolTeam");
         }
-
         private static void UpdateLolPlayer()
         {
             Console.WriteLine("Id: ");
@@ -210,7 +192,6 @@ namespace GBJ0CK_HFT_2021222.Client
         }
 
         //-----------------END-Update-------------
-
         //-----------------Delete--------------
         private static void DeletePreMenu()
         {
