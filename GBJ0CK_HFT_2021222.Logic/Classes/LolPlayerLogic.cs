@@ -27,7 +27,7 @@ namespace GBJ0CK_HFT_2021222.Logic
             }
             if (obj.Name.Any(c => char.IsDigit(c)) || obj.Role.Any(c => char.IsDigit(c)))
             {
-                throw new ArgumentException("Name and Role can't contain numbers");
+                throw new ArgumentException("Name and Role can't contain numbers because they are text");
             }
             playerRepo.Create(obj);
         }
