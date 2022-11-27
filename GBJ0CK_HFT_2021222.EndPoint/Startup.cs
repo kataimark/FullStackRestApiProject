@@ -29,7 +29,7 @@ namespace GBJ0CK_HFT_2021222.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<LolDbContext>();
+            
 
             services.AddTransient<IRepository<LolPlayer>, LolPlayerRepository>();
             services.AddTransient<IRepository<LolTeam>, LolTeamRepository>();
