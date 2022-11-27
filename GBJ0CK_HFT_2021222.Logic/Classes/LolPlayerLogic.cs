@@ -18,7 +18,6 @@ namespace GBJ0CK_HFT_2021222.Logic
             this.teamRepo = teamRepo;
             this.managerRepo = managerRepo;
         }
-
         public void Create(LolPlayer obj)
         {
             if (obj.Name == "" || obj.Role == "")
