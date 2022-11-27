@@ -44,22 +44,7 @@ namespace GBJ0CK_HFT_2021222.Test
 
         }
 
-        [Test]
-        public void GetOneLolPlayer_ReturnsCorrectId()
-        {
-            Assert.That(playerlogic.Read(1).Id, Is.EqualTo(1));
-        }
 
-        [Test]
-        public void GetOneLolPlayer_ReturnsCorrectName()
-        {
-            Assert.That(playerlogic.Read(1).Name, Is.EqualTo("Feus"));
-        }
-        [Test]
-        public void GetOneLolPlayer_ReturnsCorrectAge()
-        {
-            Assert.That(playerlogic.Read(1).Age, Is.EqualTo(18));
-        }
         [Test]
         public void GetOneLolPlayer_ReturnsCorrectRole()
         {
