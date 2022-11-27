@@ -19,40 +19,41 @@ namespace GBJ0CK_HFT_2021222.Logic
             this.managerRepo = managerRepo;
         }
 
-        public void Create(LolPlayer item)
+        public void Create(LolPlayer obj)
         {
-            if (item.Name.Length < 3)
+            if (obj.Name == "" || obj.Role == "")
             {
-                throw new ArgumentException("PlayerName too short...");
+                throw new ArgumentNullException("Can't be null");
             }
-            this.playerRepo.Create(item);
+            if (obj.Name.Any(c => char.IsDigit(c)) || obj.Role.Any(c => char.IsDigit(c)))
+            {
+                throw new ArgumentException("Name and Role can't contain numbers");
+            }
+            playerRepo.Create(obj);
         }
 
         public void Delete(int id)
         {
-            this.playerRepo.Delete(id);
+            playerRepo.Delete(id);
         }
 
         public LolPlayer Read(int id)
         {
-            var player = this.playerRepo.Read(id);
-            if (player == null)
-            {
+            if (id < playerRepo.ReadAll().Count() + 1)
+                return playerRepo.Read(id);
+            else
+                throw new IndexOutOfRangeException("Id is to big!");
 
-                throw new ArgumentException("Player not exists.");
-
-            }
-            return player;
         }
 
         public IQueryable<LolPlayer> ReadAll()
         {
-            return this.playerRepo.ReadAll();
+            return playerRepo.ReadAll();
         }
 
-        public void Update(LolPlayer item)
+        public void Update(LolPlayer obj)
         {
-            this.playerRepo.Update(item);
+            playerRepo.Update(obj);
         }
 
         public IEnumerable<LolPlayer> GetLolplayersAtAgeFourty()

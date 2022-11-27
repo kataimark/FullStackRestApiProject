@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GBJ0CK_HFT_2021222.Repository
 {
-    public class LolTeamRepository : Repository<LolTeam>, IRepository<LolTeam>
+    public class LolTeamRepository : Repository<LolTeam>
     {
         public LolTeamRepository(LolDbContext ctx) : base(ctx)
         {
@@ -19,14 +19,19 @@ namespace GBJ0CK_HFT_2021222.Repository
             return ctx.LolTeams.FirstOrDefault(t => t.Id == id);
         }
 
-        public override void Update(LolTeam item)
+        public override void Update(LolTeam obj)
         {
-            var old = Read(item.Id);
-            foreach (var prop in old.GetType().GetProperties())
-            {
-                prop.SetValue(old, prop.GetValue(item));
-
-            }
+            var oldLolTeam = Read(obj.Id);
+            oldLolTeam.Id = obj.Id;
+            oldLolTeam.TeamName = obj.TeamName;
+            oldLolTeam.Wins = obj.Wins;
+            oldLolTeam.WasChampion = obj.WasChampion;
+            oldLolTeam.LolManager_id = obj.LolManager_id;
+            ctx.SaveChanges();
+        }
+        public override void Delete(int id)
+        {
+            ctx.Remove(Read(id));
             ctx.SaveChanges();
         }
     }

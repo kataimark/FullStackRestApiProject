@@ -11,7 +11,7 @@ namespace GBJ0CK_HFT_2021222.Client
 {
     class Program
     {
-        public static RestService rserv = new RestService("http://localhost:48540");
+        public static RestService rserv = new RestService("http://localhost:29021");
         static void Main(string[] args)
         {
             System.Threading.Thread.Sleep(8000);
@@ -98,10 +98,6 @@ namespace GBJ0CK_HFT_2021222.Client
 
         //---------------------END-Create-------------------
 
-
-
-
-
         //---------------------Read------------------------
         private static void ReadPreMenu()
         {
@@ -138,10 +134,6 @@ namespace GBJ0CK_HFT_2021222.Client
 
         //---------------------END-Read-------------------
 
-
-
-
-
         //----------------------ReadAll----------------------
         private static void ReadAllPreMenu()
         {
@@ -170,10 +162,6 @@ namespace GBJ0CK_HFT_2021222.Client
             Console.ReadLine();
         }
         //---------------END-ReadAll-------------------
-
-
-
-
 
         //-----------------Update-------------------
         private static void UpdatePreMenu()
@@ -223,10 +211,6 @@ namespace GBJ0CK_HFT_2021222.Client
 
         //-----------------END-Update-------------
 
-
-
-
-
         //-----------------Delete--------------
         private static void DeletePreMenu()
         {
@@ -255,19 +239,6 @@ namespace GBJ0CK_HFT_2021222.Client
         }
 
         //-------------------END-Delete----------
-
-
-
-
-
-
-
-
-
-
-
-
-
         ////-------------------------------------------------------------------------------------------------------------non-CRUD------------------------------------------------
 
         private static void GetLolplayersAtAgeFourty()
@@ -275,6 +246,7 @@ namespace GBJ0CK_HFT_2021222.Client
             var output = rserv.Get<LolPlayer>("stat/GetLolplayersAtAgeFourty");
             LolplayerToConsole(output);
             Console.ReadLine();
+            
         }
         private static void GetLolPlayerWhereWinIsOverTen()
         {
@@ -301,20 +273,6 @@ namespace GBJ0CK_HFT_2021222.Client
             LolManagerToConsole(output);
             Console.ReadLine();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         ////-------------------------------------------------------------------------------------------------------------ToConsole------------------------------------------------
         private static void LolplayerToConsole(IEnumerable<LolPlayer> input)

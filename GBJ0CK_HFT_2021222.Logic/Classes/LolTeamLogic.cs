@@ -17,29 +17,40 @@ namespace GBJ0CK_HFT_2021222.Logic
             this.Teamrepo = repo;
         }
 
-        public void Create(LolTeam item)
+        public void Create(LolTeam obj)
         {
-            this.Teamrepo.Create(item);
+            if (obj.TeamName == "")
+            {
+                throw new ArgumentNullException("Can't be null");
+            }
+            if (obj.Wins < 0)
+            {
+                throw new ArgumentException("Negative price is not allowed");
+            }
+            Teamrepo.Create(obj);
         }
 
         public void Delete(int id)
         {
-            this.Teamrepo.Delete(id);
+            Teamrepo.Delete(id);
         }
 
         public LolTeam Read(int id)
         {
-            return this.Teamrepo.Read(id);
+            if (id < Teamrepo.ReadAll().Count() + 1)
+                return Teamrepo.Read(id);
+            else
+                throw new IndexOutOfRangeException("Id is to big!");
         }
 
         public IQueryable<LolTeam> ReadAll()
         {
-            return this.Teamrepo.ReadAll();
+            return Teamrepo.ReadAll();
         }
 
-        public void Update(LolTeam item)
+        public void Update(LolTeam obj)
         {
-            this.Teamrepo.Update(item);
+            Teamrepo.Update(obj);
         }
     }
 }

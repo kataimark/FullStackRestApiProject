@@ -21,29 +21,40 @@ namespace GBJ0CK_HFT_2021222.Logic
             this.managerRepo = managerRepo;
         }
 
-        public void Create(LolManager item)
+        public void Create(LolManager obj)
         {
-            this.managerRepo.Create(item);
+            if (obj.ManagerName.Any(c => char.IsDigit(c)) || obj.Age<0)
+            {
+                throw new ArgumentException("Name and ManagerName can't contain numbers");
+            }
+            if (obj.ManagerName == "" || obj.Age == 0)
+            {
+                throw new ArgumentNullException("Can't be null");
+            }
+            managerRepo.Create(obj);
         }
 
         public void Delete(int id)
         {
-            this.managerRepo.Delete(id);
+            managerRepo.Delete(id);
         }
 
         public LolManager Read(int id)
         {
-            return this.managerRepo.Read(id);
+            if (id < managerRepo.ReadAll().Count() + 1)
+                return managerRepo.Read(id);
+            else
+                throw new IndexOutOfRangeException("Id is to big!");
         }
 
         public IQueryable<LolManager> ReadAll()
         {
-            return this.managerRepo.ReadAll();
+            return managerRepo.ReadAll();
         }
 
-        public void Update(LolManager item)
+        public void Update(LolManager obj)
         {
-            this.managerRepo.Update(item);
+            managerRepo.Update(obj);
         }
 
         public IEnumerable<LolManager> GetLolManagertName()
