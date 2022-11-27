@@ -25,7 +25,7 @@ namespace GBJ0CK_HFT_2021222.Logic
         {
             if (obj.ManagerName.Any(c => char.IsDigit(c)) || obj.Age<0)
             {
-                throw new ArgumentException("Name and ManagerName can't contain numbers");
+                throw new ArgumentException("ManagerName can't contain numbers, Age cant contain letters");
             }
             if (obj.ManagerName == "" || obj.Age == 0)
             {
