@@ -25,7 +25,7 @@ namespace GBJ0CK_HFT_2021222.Logic
             }
             if (obj.Wins < 0)
             {
-                throw new ArgumentException("Negative price is not allowed");
+                throw new ArgumentException("Negative win is not allowed");
             }
             Teamrepo.Create(obj);
         }
