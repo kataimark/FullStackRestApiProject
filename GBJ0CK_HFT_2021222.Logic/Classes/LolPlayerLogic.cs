@@ -30,12 +30,10 @@ namespace GBJ0CK_HFT_2021222.Logic
             }
             playerRepo.Create(obj);
         }
-
         public void Delete(int id)
         {
             playerRepo.Delete(id);
         }
-
         public LolPlayer Read(int id)
         {
             if (id < playerRepo.ReadAll().Count() + 1)
@@ -44,17 +42,14 @@ namespace GBJ0CK_HFT_2021222.Logic
                 throw new IndexOutOfRangeException("Id is to big!");
 
         }
-
         public IQueryable<LolPlayer> ReadAll()
         {
             return playerRepo.ReadAll();
         }
-
         public void Update(LolPlayer obj)
         {
             playerRepo.Update(obj);
         }
-
         public IEnumerable<LolPlayer> GetLolplayersAtAgeFourty()
         {
             var q = from lolplayers in playerRepo.ReadAll()
@@ -76,7 +71,6 @@ namespace GBJ0CK_HFT_2021222.Logic
                     select lolplayers;
             return q;
         }
-
         public IEnumerable<LolPlayer> GetLolplayersWhereTeamNameIsRoll()
         {
             var q = from lolplayers in playerRepo.ReadAll()
