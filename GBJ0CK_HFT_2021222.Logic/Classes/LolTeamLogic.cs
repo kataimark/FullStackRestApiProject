@@ -10,47 +10,47 @@ namespace GBJ0CK_HFT_2021222.Logic
 {
     public class LolTeamLogic : ILolTeamLogic
     {
-        IRepository<LolTeam> Teamrepo;
+        IRepository<LolTeam> LolTeamRepo;
 
-        public LolTeamLogic(IRepository<LolTeam> repo)
+        public LolTeamLogic(IRepository<LolTeam> LolTeamRepo)
         {
-            this.Teamrepo = repo;
+            this.LolTeamRepo = LolTeamRepo;
         }
 
         public void Create(LolTeam obj)
         {
-            if (obj.TeamName == "")
+            if (obj.Name.Any(c => char.IsDigit(c)) || obj.Owner.Any(c => char.IsDigit(c)))
+            {
+                throw new ArgumentException("Name and owner can't contain numbers");
+            }
+            if (obj.Name == "" || obj.Owner == "")
             {
                 throw new ArgumentNullException("Can't be null");
             }
-            if (obj.Wins < 0)
-            {
-                throw new ArgumentException("Negative win is not allowed");
-            }
-            Teamrepo.Create(obj);
+            LolTeamRepo.Create(obj);
         }
 
         public void Delete(int id)
         {
-            Teamrepo.Delete(id);
+            LolTeamRepo.Delete(id);
         }
 
         public LolTeam Read(int id)
         {
-            if (id < Teamrepo.ReadAll().Count() + 1)
-                return Teamrepo.Read(id);
+            if (id < LolTeamRepo.ReadAll().Count() + 1)
+                return LolTeamRepo.Read(id);
             else
-                throw new IndexOutOfRangeException("Id is to big!");
+                throw new IndexOutOfRangeException("Id is too big!");
         }
 
         public IQueryable<LolTeam> ReadAll()
         {
-            return Teamrepo.ReadAll();
+            return LolTeamRepo.ReadAll();
         }
 
         public void Update(LolTeam obj)
         {
-            Teamrepo.Update(obj);
+            LolTeamRepo.Update(obj);
         }
     }
 }

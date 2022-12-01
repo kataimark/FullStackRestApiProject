@@ -27,7 +27,6 @@ namespace GBJ0CK_HFT_2021222.Client
             try
             {
                 client.GetAsync("").GetAwaiter().GetResult();
-                
             }
             catch (HttpRequestException)
             {
@@ -46,7 +45,6 @@ namespace GBJ0CK_HFT_2021222.Client
             }
             return items;
         }
-        
 
         public T GetSingle<T>(string endpoint)
         {

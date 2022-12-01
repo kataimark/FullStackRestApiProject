@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace GBJ0CK_HFT_2021222.Models
 {
@@ -15,22 +15,21 @@ namespace GBJ0CK_HFT_2021222.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [StringLength(240)]
-        public string TeamName { get; set; }
-        [Range(0, 100)]
-        public int Wins { get; set; }
-        [Range(0, 100)]
-        public int WasChampion { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string Name { get; set; }
 
+        public string Owner { get; set; } //who's the team owner
 
         [ForeignKey(nameof(LolManager))]
-        public int LolManager_id { get; set; }
+        public int LolManager_Id { get; set; }
 
         [NotMapped]
         [JsonIgnore]
         public virtual LolManager LolManager { get; set; }
 
+        [NotMapped]
         public virtual ICollection<LolPlayer> LolPlayers { get; set; }
 
         public LolTeam()

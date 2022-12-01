@@ -10,75 +10,87 @@ namespace GBJ0CK_HFT_2021222.Logic
 {
     public class LolManagerLogic : ILolManagerLogic
     {
-        IRepository<LolPlayer> playerRepo;
-        IRepository<LolTeam> teamRepo;
-        IRepository<LolManager> managerRepo;
+        IRepository<LolManager> LolManagerRepo;
+        IRepository<LolTeam> LolTeamRepo;
+        IRepository<LolPlayer> LolPlayerRepo;
 
-        public LolManagerLogic(IRepository<LolPlayer> playerRepo, IRepository<LolTeam> teamRepo, IRepository<LolManager> managerRepo)
+        public LolManagerLogic(IRepository<LolManager> LolManagerRepo, IRepository<LolTeam> LolTeamRepo, IRepository<LolPlayer> LolPlayerRepo)
         {
-            this.playerRepo = playerRepo;
-            this.teamRepo = teamRepo;
-            this.managerRepo = managerRepo;
+            this.LolManagerRepo = LolManagerRepo;
+            this.LolTeamRepo = LolTeamRepo;
+            this.LolPlayerRepo = LolPlayerRepo;
         }
 
         public void Create(LolManager obj)
         {
-            if (obj.ManagerName.Any(c => char.IsDigit(c)) || obj.Age<0)
+            if (obj.Name.Any(c => char.IsDigit(c)))
             {
-                throw new ArgumentException("ManagerName can't contain numbers, Age cant contain letters");
+                throw new ArgumentException("Name can't contain numbers");
             }
-            if (obj.ManagerName == "" || obj.Age == 0)
+            if (obj.Name == "")
             {
-                throw new ArgumentNullException("Can't be null");
+                throw new ArgumentNullException("Name can't be null");
             }
-            managerRepo.Create(obj);
+            LolManagerRepo.Create(obj);
         }
 
         public void Delete(int id)
         {
-            managerRepo.Delete(id);
+            LolManagerRepo.Delete(id);
         }
 
         public LolManager Read(int id)
         {
-            if (id < managerRepo.ReadAll().Count() + 1)
-                return managerRepo.Read(id);
+            if (id < LolManagerRepo.ReadAll().Count() + 1)
+                return LolManagerRepo.Read(id);
             else
-                throw new IndexOutOfRangeException("Id is to big!");
+                throw new IndexOutOfRangeException("Id is too big!");
         }
 
         public IQueryable<LolManager> ReadAll()
         {
-            return managerRepo.ReadAll();
+            return LolManagerRepo.ReadAll();
         }
 
         public void Update(LolManager obj)
         {
-            managerRepo.Update(obj);
+            LolManagerRepo.Update(obj);
         }
-
-        public IEnumerable<LolManager> GetLolManagertName()
+        public IEnumerable<LolManager> GetLolManagerWhereLolPlayer18()
         {
-            var q = from lolplayers in playerRepo.ReadAll()
-                    join lolteams in teamRepo.ReadAll()
-                    on lolplayers.LolTeam_id equals lolteams.Id
-                    join lolmanagers in managerRepo.ReadAll()
-                    on lolteams.LolManager_id equals lolmanagers.Id
-                    where lolplayers.Name == "Freid"
-                    select lolmanagers;
+            var q = from LolPlayers in LolPlayerRepo.ReadAll()
+                    join LolTeams in LolTeamRepo.ReadAll()
+                    on LolPlayers.LolTeam_Id equals LolTeams.Id
+                    join LolManagers in LolManagerRepo.ReadAll()
+                    on LolTeams.LolManager_Id equals LolManagers.Id
+                    where LolPlayers.Age == 18
+                    select LolManagers;
             return q;
         }
 
-        public IEnumerable<LolManager> GetLolManagertAtTwenty()
+        public IEnumerable<LolManager> GetLolManagerWhereLolPlayerModelIsZeus()
         {
-            var q = from lolplayers in playerRepo.ReadAll()
-                    join lolteams in teamRepo.ReadAll()
-                    on lolplayers.LolTeam_id equals lolteams.Id
-                    join lolmanagers in managerRepo.ReadAll()
-                    on lolteams.LolManager_id equals lolmanagers.Id
-                    where lolplayers.Age == 20
-                    select lolmanagers;
+            var q = from LolPlayers in LolPlayerRepo.ReadAll()
+                    join LolTeams in LolTeamRepo.ReadAll()
+                    on LolPlayers.LolTeam_Id equals LolTeams.Id
+                    join LolManagers in LolManagerRepo.ReadAll()
+                    on LolTeams.LolManager_Id equals LolManagers.Id
+                    where LolPlayers.Name == "Zeus"
+                    select LolManagers;
             return q;
         }
+
+        public IEnumerable<LolManager> GetLolManagerWherePriceIs100()
+        {
+            var q = from LolPlayers in LolPlayerRepo.ReadAll()
+                    join LolTeams in LolTeamRepo.ReadAll()
+                    on LolPlayers.LolTeam_Id equals LolTeams.Id
+                    join LolManagers in LolManagerRepo.ReadAll()
+                    on LolTeams.LolManager_Id equals LolManagers.Id
+                    where LolPlayers.Price == 100
+                    select LolManagers;
+            return q;
+        }
+
     }
 }

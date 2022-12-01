@@ -1,3 +1,4 @@
+using GBJ0CK_HFT_2021222.EndPoint;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GBJ0CK_HFT_2021222.EndPoint
+namespace GBJ0CK_HFT_2021222.Endpoint
 {
     public class Program
     {

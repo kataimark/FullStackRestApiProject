@@ -6,17 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GBJ0CK_HFT_2021222.EndPoint.Controllers
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace GBJ0CK_HFT_2021222.Endpoint.Cotrollers
 {
     [Route("[controller]")]
     [ApiController]
     public class LolPlayerController : ControllerBase
     {
-        ILolPlayerLogic logic;
+        ILolPlayerLogic pl;
 
         public LolPlayerController(ILolPlayerLogic logic)
         {
-            this.logic = logic;
+            this.pl = logic;
         }
 
 
@@ -24,36 +26,35 @@ namespace GBJ0CK_HFT_2021222.EndPoint.Controllers
         [HttpGet]
         public IEnumerable<LolPlayer> Get()
         {
-            return logic.ReadAll();
+            return pl.ReadAll();
         }
 
         // GET LolPlayer/5
         [HttpGet("{id}")]
         public LolPlayer Get(int id)
         {
-            return logic.Read(id);
+            return pl.Read(id);
         }
 
         // POST LolPlayer
         [HttpPost]
         public void Post([FromBody] LolPlayer value)
         {
-            logic.Create(value);
+            pl.Create(value);
         }
 
         // PUT LolPlayer/5
         [HttpPut]
         public void Put([FromBody] LolPlayer value)
         {
-            logic.Update(value);
+            pl.Update(value);
         }
 
         // DELETE LolPlayer/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            logic.Delete(id);
+            pl.Delete(id);
         }
-
     }
 }

@@ -1,85 +1,82 @@
-﻿using System;
+﻿using GBJ0CK_HFT_2021222.Models;
+using GBJ0CK_HFT_2021222.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using GBJ0CK_HFT_2021222.Models;
-using GBJ0CK_HFT_2021222.Repository;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GBJ0CK_HFT_2021222.Logic
 {
     public class LolPlayerLogic : ILolPlayerLogic
     {
-        IRepository<LolPlayer> playerRepo;
-        IRepository<LolTeam> teamRepo;
-        IRepository<LolManager> managerRepo;
+        IRepository<LolManager> LolManagerRepo;
+        IRepository<LolTeam> LolTeamRepo;
+        IRepository<LolPlayer> LolPlayerRepo;
 
-        public LolPlayerLogic(IRepository<LolPlayer> playerRepo, IRepository<LolTeam> teamRepo, IRepository<LolManager> managerRepo)
+        public LolPlayerLogic(IRepository<LolManager> LolManagerRepo, IRepository<LolTeam> LolTeamRepo, IRepository<LolPlayer> LolPlayerRepo)
         {
-            this.playerRepo = playerRepo;
-            this.teamRepo = teamRepo;
-            this.managerRepo = managerRepo;
+            this.LolManagerRepo = LolManagerRepo;
+            this.LolTeamRepo = LolTeamRepo;
+            this.LolPlayerRepo = LolPlayerRepo;
         }
+
         public void Create(LolPlayer obj)
         {
-            if (obj.Name == "" || obj.Role == "")
+            if (obj.Name == "")
             {
-                throw new ArgumentNullException("Can't be null");
+                throw new ArgumentNullException("Model can't be null");
             }
-            if (obj.Name.Any(c => char.IsDigit(c)) || obj.Role.Any(c => char.IsDigit(c)))
+            if (obj.Price < 0 || obj.Age < 0)
             {
-                throw new ArgumentException("Name and Role can't contain numbers because they are text");
+                throw new ArgumentException("Negative price and horsepower is not allowed");
             }
-            playerRepo.Create(obj);
+            LolPlayerRepo.Create(obj);
         }
+
         public void Delete(int id)
         {
-            playerRepo.Delete(id);
+            LolPlayerRepo.Delete(id);
         }
+
         public LolPlayer Read(int id)
         {
-            if (id < playerRepo.ReadAll().Count() + 1)
-                return playerRepo.Read(id);
+            if (id < LolPlayerRepo.ReadAll().Count() + 1)
+                return LolPlayerRepo.Read(id);
             else
                 throw new IndexOutOfRangeException("Id is to big!");
-
         }
+
         public IQueryable<LolPlayer> ReadAll()
         {
-            return playerRepo.ReadAll();
+            return LolPlayerRepo.ReadAll();
         }
+
         public void Update(LolPlayer obj)
         {
-            playerRepo.Update(obj);
-        }
-        public IEnumerable<LolPlayer> GetLolplayersAtAgeFourty()
-        {
-            var q = from lolplayers in playerRepo.ReadAll()
-                    join lolteams in teamRepo.ReadAll()
-                    on lolplayers.LolTeam_id equals lolteams.Id
-                    join lolmanagers in managerRepo.ReadAll()
-                    on lolteams.LolManager_id equals lolmanagers.Id
-                    where lolmanagers.Age == 40
-                    select lolplayers;
-
-            return q;
-        }
-        public IEnumerable<LolPlayer> GetLolPlayerWhereWinIsOverTen()
-        {
-            var q = from lolplayers in playerRepo.ReadAll()
-                    join lolteams in teamRepo.ReadAll()
-                    on lolplayers.LolTeam_id equals lolteams.Id
-                    where lolteams.Wins > 10
-                    select lolplayers;
-            return q;
-        }
-        public IEnumerable<LolPlayer> GetLolplayersWhereTeamNameIsRoll()
-        {
-            var q = from lolplayers in playerRepo.ReadAll()
-                    join lolteams in teamRepo.ReadAll()
-                    on lolplayers.LolTeam_id equals lolteams.Id
-                    where lolteams.TeamName == "ROLL"
-                    select lolplayers;
-            return q;
+            LolPlayerRepo.Update(obj);
         }
 
+
+        public IEnumerable<LolPlayer> GetLolPlayerWhereMoreThan28Employees()
+        {
+            var q = from LolPlayers in LolPlayerRepo.ReadAll()
+                    join LolTeams in LolTeamRepo.ReadAll()
+                    on LolPlayers.LolTeam_Id equals LolTeams.Id
+                    join LolManagers in LolManagerRepo.ReadAll()
+                    on LolTeams.LolManager_Id equals LolManagers.Id
+                    where LolManagers.Employees > 28
+                    select LolPlayers;
+            return q;
+        }
+        public IEnumerable<LolPlayer> GetLolPlayerWhereLolTeamOwnerIsBengi()
+        {
+            var q = from LolPlayers in LolPlayerRepo.ReadAll()
+                    join LolTeams in LolTeamRepo.ReadAll()
+                    on LolPlayers.LolTeam_Id equals LolTeams.Id
+                    where LolTeams.Owner == "Bengi"
+                    select LolPlayers;
+            return q;
+        }
     }
 }

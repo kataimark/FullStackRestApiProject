@@ -8,18 +8,10 @@ namespace GBJ0CK_HFT_2021222.Repository
 {
     public interface IRepository<T> where T : class
     {
-        IQueryable<T> ReadAll();
-
+        void Create(T obj);
         T Read(int id);
-
-        void Create(T item);
-
-        void Update(T item);
-
+        IQueryable<T> ReadAll();
+        void Update(T obj);
         void Delete(int id);
-
-
-
-
     }
 }
