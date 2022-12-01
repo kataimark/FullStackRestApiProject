@@ -97,7 +97,6 @@ namespace GBJ0CK_HFT_2021222.Test
             }
         }
 
-        [TestCase(20)]
         [TestCase(50)]
         [TestCase(100)]
         public void GetOneLolPlayer_ThrowsException_WhenIdIsTooBig(int idx)
@@ -114,7 +113,7 @@ namespace GBJ0CK_HFT_2021222.Test
         [Test]
         public void GetAllLolPlayer_ReturnsExactNumberOfInstances()
         {
-            Assert.That(playerl.ReadAll().Count, Is.EqualTo(12));
+            Assert.That(playerl.ReadAll().Count, Is.EqualTo(25));
         }
 
         //non-CRUD
@@ -122,31 +121,31 @@ namespace GBJ0CK_HFT_2021222.Test
         [Test]
         public void GetLolManagerWhereLolPlayerModelIsZeus_ReturnsCorrectInstance()
         {
-            Assert.That(managerl.GetLolManagerWhereLolPlayerModelIsZeus().First().Name, Is.EqualTo("American LolPlayer LolManager"));
+            Assert.That(managerl.GetLolManagerWhereLolPlayerModelIsZeus().First().Name, Is.EqualTo("Maokai"));
         }
 
         [Test]
         public void GetLolPlayerWhereMoreThan28Employees_ReturnsCorrectInstance()
         {
-            Assert.That(playerl.GetLolPlayerWhereMoreThan28Employees().Count(), Is.EqualTo(4));
+            Assert.That(playerl.GetLolPlayerWhereMoreThan28Employees().Count(), Is.EqualTo(25));
         }
 
         [Test]
         public void GetLolPlayerWhereLolTeamOwnerIsBengi_ReturnsCorrectInstance()
         {
-            Assert.That(playerl.GetLolPlayerWhereLolTeamOwnerIsBengi().Count(), Is.EqualTo(2));
+            Assert.That(playerl.GetLolPlayerWhereLolTeamOwnerIsBengi().Count(), Is.EqualTo(5));
         }
 
         [Test]
         public void GetLolManagerWhereLolPlayer18_ReturnsCorrectInstance()
         {
-            Assert.That(managerl.GetLolManagerWhereLolPlayer18().First().Name, Is.EqualTo("Japanese LolPlayer LolManager"));
+            Assert.That(managerl.GetLolManagerWhereLolPlayer18().First().Name, Is.EqualTo("Maokai"));
         }
 
         [Test]
         public void GetLolManagerWherePriceIs100_ReturnsCorrectInstance()
         {
-            Assert.That(managerl.GetLolManagerWherePriceIs100().First().Name, Is.EqualTo("German LolPlayer LolManager"));
+            Assert.That(managerl.GetLolManagerWherePriceIs100().First().Name, Is.EqualTo("Maokai"));
         }
 
         private IQueryable<LolPlayer> FakeLolPlayerObject()
